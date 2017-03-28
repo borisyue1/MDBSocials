@@ -6,4 +6,5 @@ Developed a social media application for Mobile Developers of Berkeley. After be
 * Firebase - Authentication, Storage, Database
 * Table Views
 * Model View Controller structure
+* Protocols/delegates
 
