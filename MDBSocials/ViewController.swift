@@ -57,8 +57,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func setUpLoginTitle() {
         loginTitle = UILabel(frame: CGRect(x: 0, y: UIScreen.main.bounds.height * 0.25, width: 100, height: 30))
-        loginTitle.text = "Log In"
+        loginTitle.text = "Sign In"
         loginTitle.font = UIFont(name: "SanFranciscoText-Regular", size: 35)
+        loginTitle.font = UIFont.boldSystemFont(ofSize: 35)
         loginTitle.textColor = UIColor.white
         loginTitle.sizeToFit()
         loginTitle.frame.origin.x = view.frame.width / 2 - loginTitle.frame.width / 2
@@ -81,10 +82,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         emailTextField.attributedPlaceholder = NSAttributedString(string: "Email",
                                                                attributes: [NSForegroundColorAttributeName: UIColor.white])
         emailTextField.layer.borderColor = UIColor.white.cgColor
-        emailTextField.layer.borderWidth = Constants.signInBorderWidth
-        emailTextField.layer.cornerRadius = Constants.signInCornerRadius
         emailTextField.layer.masksToBounds = true
         emailTextField.tag = 0
+        emailTextField.borderStyle = .none
+        emailTextField.createBottomBorder()
         view.addSubview(emailTextField)
     }
     
@@ -94,22 +95,21 @@ class ViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password",
                                                                      attributes: [NSForegroundColorAttributeName: UIColor.white])
         passwordTextField.layer.borderColor = UIColor.white.cgColor
-        passwordTextField.layer.borderWidth = Constants.signInBorderWidth
-        passwordTextField.layer.cornerRadius = Constants.signInCornerRadius
         passwordTextField.layer.masksToBounds = true
         passwordTextField.isSecureTextEntry = true
         passwordTextField.tag = 1
         passwordTextField.returnKeyType = UIReturnKeyType.go
         passwordTextField.addTarget(self, action: #selector(loginClicked), for: .touchUpInside)
+        passwordTextField.createBottomBorder()
         view.addSubview(passwordTextField)
     }
     
     func setUpLoginButton() {
         loginButton = UIButton(frame: CGRect(x: view.frame.width / 2 - 125, y: passwordTextField.frame.maxY + 20, width: passwordTextField.frame.width, height: Constants.textFieldHeight))
-        loginButton.setTitle("Login", for: .normal)
+        loginButton.setTitle("Sign In", for: .normal)
         loginButton.titleLabel?.font = UIFont(name: "SanFranciscoText-Regular", size: 17)
-        loginButton.setTitleColor(UIColor.white, for: .normal)
-        loginButton.backgroundColor = Constants.greenColor
+        loginButton.setTitleColor(Constants.blueColor, for: .normal)
+        loginButton.backgroundColor = UIColor.white
         loginButton.layer.cornerRadius = Constants.signInCornerRadius
         loginButton.layer.masksToBounds = true
         loginButton.addTarget(self, action: #selector(loginClicked), for: .touchUpInside)

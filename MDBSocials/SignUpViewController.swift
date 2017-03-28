@@ -65,7 +65,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     func setUpSignUpTitle() {
         signUpTitle = UILabel(frame: CGRect(x: 0, y: UIScreen.main.bounds.height * 0.22, width: 100, height: 30))
         signUpTitle.text = "Sign Up"
-        signUpTitle.font = UIFont(name: "SanFranciscoText-Regular", size: 35)
+        signUpTitle.font = UIFont(name: "SanFranciscoText-Regular", size: 30)
+        signUpTitle.font = UIFont.boldSystemFont(ofSize: 30)
         signUpTitle.textColor = UIColor.white
         signUpTitle.sizeToFit()
         signUpTitle.frame.origin.x = view.frame.width / 2 - signUpTitle.frame.width / 2
@@ -91,8 +92,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         nameTextField.attributedPlaceholder = NSAttributedString(string: "Name",
                                                                      attributes: [NSForegroundColorAttributeName: UIColor.white])
         nameTextField.layer.borderColor = UIColor.white.cgColor
-        nameTextField.layer.borderWidth = Constants.signInBorderWidth
-        nameTextField.layer.cornerRadius = Constants.signInCornerRadius
+        nameTextField.createBottomBorder()
         nameTextField.layer.masksToBounds = true
         nameTextField.tag = 0 //used for pressing return, advances to next text field
         view.addSubview(nameTextField)
@@ -104,8 +104,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         emailTextField.attributedPlaceholder = NSAttributedString(string: "Email",
                                                                      attributes: [NSForegroundColorAttributeName: UIColor.white])
         emailTextField.layer.borderColor = UIColor.white.cgColor
-        emailTextField.layer.borderWidth = Constants.signInBorderWidth
-        emailTextField.layer.cornerRadius = Constants.signInCornerRadius
+        emailTextField.createBottomBorder()
         emailTextField.layer.masksToBounds = true
         emailTextField.tag = 1
         view.addSubview(emailTextField)
@@ -117,8 +116,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         userNameTextField.attributedPlaceholder = NSAttributedString(string: "Username",
                                                                      attributes: [NSForegroundColorAttributeName: UIColor.white])
         userNameTextField.layer.borderColor = UIColor.white.cgColor
-        userNameTextField.layer.borderWidth = Constants.signInBorderWidth
-        userNameTextField.layer.cornerRadius = Constants.signInCornerRadius
+        userNameTextField.createBottomBorder()
         userNameTextField.layer.masksToBounds = true
         userNameTextField.tag = 2
         view.addSubview(userNameTextField)
@@ -130,8 +128,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password",
                                                                      attributes: [NSForegroundColorAttributeName: UIColor.white])
         passwordTextField.layer.borderColor = UIColor.white.cgColor
-        passwordTextField.layer.borderWidth = Constants.signInBorderWidth
-        passwordTextField.layer.cornerRadius = Constants.signInCornerRadius
+        passwordTextField.createBottomBorder()
         passwordTextField.layer.masksToBounds = true
         passwordTextField.isSecureTextEntry = true
         passwordTextField.tag = 3
@@ -144,8 +141,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         signUpButton = UIButton(frame: CGRect(x: view.frame.width / 2 - 125, y: passwordTextField.frame.maxY + 20, width: passwordTextField.frame.width, height: Constants.textFieldHeight))
         signUpButton.setTitle("Register", for: .normal)
         signUpButton.titleLabel?.font = UIFont(name: "SanFranciscoText-Regular", size: 17)
-        signUpButton.setTitleColor(UIColor.white, for: .normal)
-        signUpButton.backgroundColor = Constants.greenColor
+        signUpButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+        signUpButton.setTitleColor(Constants.blueColor, for: .normal)
+        signUpButton.backgroundColor = UIColor.white
         signUpButton.layer.cornerRadius = Constants.signInCornerRadius
         signUpButton.layer.masksToBounds = true
         signUpButton.addTarget(self, action: #selector(signUpClicked), for: .touchUpInside)
