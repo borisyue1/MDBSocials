@@ -129,28 +129,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 self.show(feedVC, sender: nil)
             }
             else {
-                self.loader.removeFromSuperview()
                 self.displayErrorMessage(withError: error!)
+                self.loader.removeFromSuperview()
+                
             }
         })
         
     }
     
     func displayErrorMessage(withError error: Error) {
-        let errorMessage = UILabel(frame: CGRect(x: 20, y: Int(UIApplication.shared.statusBarFrame.maxY + 5), width: Int(self.view.frame.width - 40), height: Int(Constants.textFieldHeight)))
-        let description = error.localizedDescription
-        errorMessage.textColor = UIColor.white
-        errorMessage.font = UIFont.systemFont(ofSize: 15)
-        errorMessage.backgroundColor = UIColor(red: 255/255, green: 77/255, blue: 77/255, alpha: 1)
-        errorMessage.textAlignment = .center
-        errorMessage.layer.cornerRadius = Constants.signInCornerRadius
-        errorMessage.clipsToBounds = true
-        if description.contains("internal") {
-            errorMessage.text = "Something is wrong. Try again."
-        } else {
-            errorMessage.text = description
-        }
-        self.view.addSubview(errorMessage)
+        let alertController = UIAlertController(title: "Login Error", message: error.localizedDescription, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(alertAction)
+        self.present(alertController, animated: true)
     }
     
     func setUpSignUpButton() {

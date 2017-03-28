@@ -142,6 +142,30 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		B468D2EC1E8B012200946E6B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B4B1F97F1E5C288F0047342D /* ViewController.swift */,
+				B43081921E5D5269003DC851 /* SignUpViewController.swift */,
+				B43081941E5D6525003DC851 /* FeedViewController.swift */,
+				B430819A1E5D983C003DC851 /* FeedTableViewCell.swift */,
+				B4E980091E604BAD0045843C /* NewSocialViewController.swift */,
+				B4E9800B1E61CEEE0045843C /* DetailViewController.swift */,
+				B4E9804B1E6284630045843C /* ListViewController.swift */,
+				B4E9804D1E6287100045843C /* ListTableViewCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		B468D2EE1E8B017400946E6B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B4E980051E6041E80045843C /* Post.swift */,
+				B4E980071E6042B40045843C /* User.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		B4B1F9711E5C288E0047342D = {
 			isa = PBXGroup;
 			children = (
@@ -168,18 +192,10 @@
 		B4B1F97C1E5C288E0047342D /* MDBSocials */ = {
 			isa = PBXGroup;
 			children = (
+				B468D2EE1E8B017400946E6B /* Models */,
+				B468D2EC1E8B012200946E6B /* Views */,
 				B4B1F97D1E5C288E0047342D /* AppDelegate.swift */,
-				B4B1F97F1E5C288F0047342D /* ViewController.swift */,
-				B43081921E5D5269003DC851 /* SignUpViewController.swift */,
-				B43081941E5D6525003DC851 /* FeedViewController.swift */,
-				B430819A1E5D983C003DC851 /* FeedTableViewCell.swift */,
-				B4E980091E604BAD0045843C /* NewSocialViewController.swift */,
-				B4E9800B1E61CEEE0045843C /* DetailViewController.swift */,
-				B4E9804B1E6284630045843C /* ListViewController.swift */,
-				B4E9804D1E6287100045843C /* ListTableViewCell.swift */,
 				B43081981E5D87C3003DC851 /* TextField.swift */,
-				B4E980051E6041E80045843C /* Post.swift */,
-				B4E980071E6042B40045843C /* User.swift */,
 				B4E9805F1E6552140045843C /* Constants.swift */,
 				B4E980611E67B3B10045843C /* MDBSocialsUtils.swift */,
 				B4B1F9811E5C288F0047342D /* Main.storyboard */,
