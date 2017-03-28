@@ -91,7 +91,7 @@ class FeedTableViewCell: UITableViewCell {
     }
     
     func addInterestedUser() {
-        interestedButton.setTitle("Interested!", for: .selected)
+        interestedButton.setTitle("Nope", for: .selected)
         if !interestedButton.isSelected {
             delegate?.addInterestedUser(forCell: self)
         } else {
