@@ -8,8 +8,8 @@ Developed a social media application for Mobile Developers of Berkeley. After be
 * Model View Controller structure
 * Protocols/delegates
 
-<img src="screenshots/signin.png" width="225" height="400" />
-<img src="screenshots/feed.png" width="225" height="400" />
-<img src="screenshots/new.png" width="225" height="400" />
-<img src="screenshots/profile.png" width="225" height="400" />
-<img src="screenshots/interested.png" width="225" height="400" />
+<img src="Screenshots/signin.png" width="225" height="400" />
+<img src="Screenshots/feed.png" width="225" height="400" />
+<img src="Screenshots/new.png" width="225" height="400" />
+<img src="Screenshots/profile.png" width="225" height="400" />
+<img src="Screenshots/interested.png" width="225" height="400" />
