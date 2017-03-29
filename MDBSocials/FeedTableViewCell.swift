@@ -41,7 +41,7 @@ class FeedTableViewCell: UITableViewCell {
     }
     
     func setUpImage() {
-        eventPicture = UIImageView(frame: CGRect(x: contentView.frame.width / 2 - 40, y: contentView.frame.height / 2 - 130, width: 180, height: 180))
+        eventPicture = UIImageView(frame: CGRect(x: contentView.frame.width / 2 - 50, y: contentView.frame.height / 2 - 125, width: 180, height: 180))
         eventPicture.layer.cornerRadius = Constants.regularCornerRadius
         eventPicture.layer.masksToBounds = true
         contentView.addSubview(eventPicture)

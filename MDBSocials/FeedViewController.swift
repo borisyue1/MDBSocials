@@ -156,7 +156,7 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) { //makes the cells smaller
         cell.contentView.backgroundColor = Constants.grayColor
         let whiteRoundedView : UIView = UIView(frame: CGRect(x: 0, y: 5, width: cell.contentView.frame.width, height: cell.contentView.frame.height - 10))
-        whiteRoundedView.layer.backgroundColor = UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1).cgColor
+        whiteRoundedView.layer.backgroundColor = UIColor(red: 253/255, green: 253/255, blue: 253/255, alpha: 1).cgColor
         whiteRoundedView.layer.cornerRadius = 5
         whiteRoundedView.layer.shadowOffset = CGSize(width: -1, height: -1)
         whiteRoundedView.layer.shadowOpacity = 0.2
