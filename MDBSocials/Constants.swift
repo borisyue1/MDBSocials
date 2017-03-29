@@ -12,12 +12,14 @@ import UIKit
 struct Constants {
     
     static let blueColor = UIColor(red: 51/255, green: 88/255, blue: 128/255, alpha: 1)
+    static let grayColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
     static let purpleColor = UIColor(red: 92/255, green: 121/255, blue: 254/255, alpha: 1)
     static let textFieldHeight: CGFloat = 40
     static let signInBorderWidth: CGFloat = 0.6
     static let signInCornerRadius: CGFloat = 20
     static let regularCornerRadius: CGFloat = 5
     static let regularBorderWidth: CGFloat = 0.4
+    static let cellHeight: CGFloat = 330
     
     
 }

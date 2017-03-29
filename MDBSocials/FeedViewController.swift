@@ -51,6 +51,7 @@ class FeedViewController: UIViewController {
     }
     
     func setUpUI() {
+        view.backgroundColor = Constants.grayColor
         setUpTableView()
         automaticallyAdjustsScrollViewInsets = false //makes navbar not cover tableview
     }
@@ -85,13 +86,15 @@ class FeedViewController: UIViewController {
     
     func setUpTableView() {
         emptyView.removeFromSuperview()
-        tableView = UITableView(frame: CGRect(x: 0, y: (navigationController?.navigationBar.frame.maxY)!, width: view.frame.width, height: view.frame.height))
+        tableView = UITableView(frame: CGRect(x: 12, y: (navigationController?.navigationBar.frame.maxY)! , width: view.frame.width - 24, height: view.frame.height))
         //Register the tableViewCell you are using
         tableView.register(FeedTableViewCell.self, forCellReuseIdentifier: "feedCell")
         //Set properties of TableView
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 120
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = Constants.grayColor
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 150 / 2, right: 0)
         tableView.tableFooterView = UIView() // gets rid of the extra cells beneath
         view.addSubview(tableView)
@@ -137,15 +140,28 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
         })
         cell.eventName.text = currentPost.name
         cell.eventName.sizeToFit()
-        cell.eventName.frame.origin.x = cell.eventPicture.frame.maxX + ((view.frame.width - cell.eventPicture.frame.maxX) / 2.25) - cell.eventName.frame.width / 2
+        cell.eventName.frame.origin.x = cell.contentView.frame.width / 2 - cell.eventName.frame.width / 3 + 24
         cell.author.text = "Posted by " + currentPost.author!
         cell.author.sizeToFit()
         cell.author.frame.origin.x = cell.eventName.frame.minX - cell.author.frame.width / 2 + cell.eventName.frame.width / 2
-        cell.date.text = "Happening on " + currentPost.date!
+        cell.date.text = currentPost.date!
         cell.date.sizeToFit()
-        cell.date.frame.origin.x = cell.eventName.frame.minX - cell.date.frame.width / 2 + cell.eventName.frame.width / 2
+        cell.date.frame.origin.x = tableView.frame.width - cell.date.frame.width - 7
+        cell.timeIcon.frame.origin.x = cell.date.frame.minX - 20
+        cell.timeIcon.frame.origin.y = 12
         addPostObserver(forPost: currentPost, updateCell: cell)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) { //makes the cells smaller
+        cell.contentView.backgroundColor = Constants.grayColor
+        let whiteRoundedView : UIView = UIView(frame: CGRect(x: 0, y: 5, width: cell.contentView.frame.width, height: cell.contentView.frame.height - 10))
+        whiteRoundedView.layer.backgroundColor = UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1).cgColor
+        whiteRoundedView.layer.cornerRadius = 5
+        whiteRoundedView.layer.shadowOffset = CGSize(width: -1, height: -1)
+        whiteRoundedView.layer.shadowOpacity = 0.2
+        cell.contentView.addSubview(whiteRoundedView)
+        cell.contentView.sendSubview(toBack: whiteRoundedView)
     }
     
     func addPostObserver(forPost: Post, updateCell: FeedTableViewCell) { //update num interested when button clicked
@@ -155,11 +171,9 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
             DispatchQueue.main.async {
                 updateCell.interests.text = "\(idArray.count)" + " Interested"
                 updateCell.interests.sizeToFit()
-                updateCell.interests.frame.origin.x = updateCell.eventName.frame.minX - updateCell.interests.frame.width / 2 + updateCell.eventName.frame.width / 2 + updateCell.interestsImage.frame.width / 2 - 35//move it to the right a bit to center with icon
-                updateCell.interests.frame.origin.y = updateCell.date.frame.minY + 20
-                let xPos = updateCell.interests.frame.minX - 23
-                updateCell.interestsImage.frame = CGRect(x: xPos, y: updateCell.date.frame.minY + 17, width: 20, height: 20)
-                updateCell.interestedButton.frame = CGRect(x: updateCell.interests.frame.maxX + 8, y: updateCell.date.frame.minY + 20, width: 70, height: updateCell.interests.frame.height )
+                updateCell.interests.frame.origin.x = 24
+                updateCell.interests.frame.origin.y = 12
+                updateCell.interestsImage.frame = CGRect(x: 6, y: 12, width: 15, height: 15)
             }
         })
     }
@@ -168,7 +182,10 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
         postToPass = posts[posts.count - 1 - indexPath.row]
         self.performSegue(withIdentifier: "toDetail", sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
+    }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return Constants.cellHeight
     }
     
 }
@@ -177,6 +194,7 @@ extension FeedViewController: NewSocialViewControllerDelegate {
     func sendValue(_ info: [String: Any]) { //gets the information from new post
         addNewPostToDatabase(post: info)
     }
+    
 }
 
 extension FeedViewController: FeedCellDelegate {

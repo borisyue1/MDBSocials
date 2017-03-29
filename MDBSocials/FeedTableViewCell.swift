@@ -21,14 +21,15 @@ class FeedTableViewCell: UITableViewCell {
     var eventPicture: UIImageView!
     var date: UILabel!
     var interestsImage: UIImageView!
+    var timeIcon: UIImageView!
     var interests: UILabel!
     var interestedButton: UIButton!
     var delegate: FeedCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        contentView.frame = CGRect(x: contentView.frame.origin.x, y: contentView.frame.origin.y, width: contentView.frame.width, height: 120) //because for some reason the row height is always 44?!?!?!
-        self.separatorInset = UIEdgeInsets.zero // make cell border extend to lefts
+        contentView.frame = CGRect(x: contentView.frame.origin.x, y: contentView.frame.origin.y, width: contentView.frame.width, height: Constants.cellHeight) //because for some reason the row height is always 44?!?!?!
+//        self.separatorInset = UIEdgeInsets.zero // make cell border extend to lefts
         setUpImage()
         setUpEventNameText()
         setUpMemberNameText()
@@ -40,14 +41,14 @@ class FeedTableViewCell: UITableViewCell {
     }
     
     func setUpImage() {
-        eventPicture = UIImageView(frame: CGRect(x: 40, y: contentView.frame.height / 2 - 50, width: 100, height: 100))
+        eventPicture = UIImageView(frame: CGRect(x: contentView.frame.width / 2 - 40, y: contentView.frame.height / 2 - 130, width: 180, height: 180))
         eventPicture.layer.cornerRadius = Constants.regularCornerRadius
         eventPicture.layer.masksToBounds = true
         contentView.addSubview(eventPicture)
     }
 
     func setUpEventNameText() {
-        eventName = UILabel(frame: CGRect(x: 0, y: eventPicture.frame.minY + 10, width: 50, height: 50))
+        eventName = UILabel(frame: CGRect(x: 0, y: eventPicture.frame.maxY + 10, width: 50, height: 50))
         eventName.font = UIFont.boldSystemFont(ofSize: 18)
         eventName.textColor = Constants.purpleColor
         contentView.addSubview(eventName)
@@ -60,9 +61,17 @@ class FeedTableViewCell: UITableViewCell {
     }
     
     func setUpDateText() {
-        date = UILabel(frame: CGRect(x: 0, y: author.frame.minY + 18, width: 50, height: 50))
-        date.font = UIFont.boldSystemFont(ofSize: 12)
+        date = UILabel(frame: CGRect(x: 0, y: 12, width: 50, height: 50))
+        date.font = UIFont.systemFont(ofSize: 12)
         contentView.addSubview(date)
+        addTimeIcon()
+    }
+    
+    func addTimeIcon() {
+        timeIcon = UIImageView()
+        timeIcon.frame.size = CGSize(width: 15, height: 15)
+        timeIcon.image = #imageLiteral(resourceName: "timer")
+        contentView.addSubview(timeIcon)
     }
     
     func addInterestedIcon() {
@@ -79,7 +88,7 @@ class FeedTableViewCell: UITableViewCell {
     }
     
     func addInterestedButton() {
-        interestedButton = UIButton()
+        interestedButton = UIButton(frame: CGRect(x: contentView.frame.width / 2 + 5, y: author.frame.minY + 25, width: 77, height: 15))
         interestedButton.layer.cornerRadius = 2
         interestedButton.layer.masksToBounds = true
         interestedButton.setTitle("Interested", for: .normal)
